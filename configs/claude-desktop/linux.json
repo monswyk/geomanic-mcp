@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "geomanic": {
+      "command": "node",
+      "args": ["/home/YOUR_USERNAME/geomanic-mcp-bridge/bridge/geomanic-bridge.js"],
+      "env": {
+        "GEOMANIC_TOKEN": "<your_mcp_api_key_from_geomanic_data_page>"
+      }
+    }
+  }
+}

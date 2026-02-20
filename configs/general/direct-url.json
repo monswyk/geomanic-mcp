@@ -1,0 +1,8 @@
+{
+  "geomanic": {
+    "url": "https://geomanic.com/api/v1/mcp",
+    "headers": {
+      "Authorization": "Bearer <GEOMANIC_TOKEN>"
+    }
+  }
+}
