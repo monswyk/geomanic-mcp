@@ -3,7 +3,6 @@
  * Geomanic MCP Bridge
  * Reads JSON-RPC from stdin, forwards to Geomanic API, writes response to stdout.
  * Usage: GEOMANIC_TOKEN=<mcp_api_key> node geomanic-bridge.js
- * Or: node geomanic-bridge.js < /path/to/request.json
  */
 
 const MCP_URL = process.env.GEOMANIC_MCP_URL || "https://geomanic.com/api/v1/mcp";
@@ -26,8 +25,7 @@ async function forward(line) {
 
   const text = await res.text();
   if (!res.ok) {
-    const err = { jsonrpc: "2.0", error: { code: -32000, message: `HTTP ${res.status}: ${text}` }, id: null };
-    return JSON.stringify(err);
+    return JSON.stringify({ jsonrpc: "2.0", error: { code: -32000, message: `HTTP ${res.status}: ${text}` }, id: null });
   }
   return text;
 }
@@ -37,13 +35,33 @@ async function main() {
   for await (const line of rl) {
     const trimmed = line.trim();
     if (!trimmed) continue;
+
+    let msg;
+    try {
+      msg = JSON.parse(trimmed);
+    } catch {
+      continue;
+    }
+
+    const isNotification = msg.id === undefined || msg.id === null;
+
     try {
       const out = await forward(trimmed);
-      process.stdout.write(out + "\n");
+      if (!isNotification && out) {
+        try {
+          const resp = JSON.parse(out);
+          if (resp.id !== null && resp.id !== undefined) {
+            process.stdout.write(out + "\n");
+          }
+        } catch {
+          // non-JSON response, ignore
+        }
+      }
     } catch (err) {
-      const msg = err instanceof Error ? err.message : String(err);
-      const errObj = { jsonrpc: "2.0", error: { code: -32603, message: msg }, id: null };
-      process.stdout.write(JSON.stringify(errObj) + "\n");
+      if (!isNotification) {
+        const errMsg = err instanceof Error ? err.message : String(err);
+        process.stdout.write(JSON.stringify({ jsonrpc: "2.0", error: { code: -32603, message: errMsg }, id: msg.id ?? null }) + "\n");
+      }
     }
   }
 }
