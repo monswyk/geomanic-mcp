@@ -68,6 +68,22 @@ Config file locations:
 
 See `docs/functions.md` for detailed parameter documentation.
 
+## OpenClaw
+
+Install the Geomanic skill directly from ClawHub:
+
+```
+/skills install @weltspion/geomanic
+```
+
+Then set your API key:
+
+```
+/secrets set GEOMANIC_TOKEN gmnc_mcp_your_key_here
+```
+
+See `openclaw-skill/README.md` for details.
+
 ## Security notes
 
 - Treat the MCP API key like a password.
