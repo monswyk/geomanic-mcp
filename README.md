@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://geomanic.com">
-    <img src="https://geomanic.com/favicon.svg" alt="Geomanic" width="80" />
+    <img src="https://geomanic.com/assets/mime/logo-geomanic-horizontal.png" alt="Geomanic" width="280" />
   </a>
 </p>
 
