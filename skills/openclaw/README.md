@@ -1,6 +1,6 @@
 # Geomanic — OpenClaw Skill
 
-Connect [OpenClaw](https://www.getopenclaw.ai) to [Geomanic](https://geomanic.com), your privacy-first GPS tracking companion.
+Connect [OpenClaw](https://www.getopenclaw.ai) to [Geomanic](https://geomanic.com), your privacy-first GPS tracking platform.
 
 ## What you can do
 
@@ -71,4 +71,4 @@ Or configure in `openclaw.json`:
 ## Links
 
 - [Geomanic](https://geomanic.com) — GPS tracking platform
-- [MCP Bridge repo](https://github.com/monswyk/geomanic-mcp-bridge) — Bridge and configs for Claude Desktop, Cursor, and other MCP clients
+- [MCP Bridge repo](https://github.com/monswyk/geomanic-mcp) — Bridge and configs for Claude Desktop, Cursor, and other MCP clients

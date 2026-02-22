@@ -1,58 +1,80 @@
-# geomanic-mcp-bridge
+# geomanic-mcp
 
-MCP bridge and configuration templates for [Geomanic](https://geomanic.com) — your GPS tracking companion.
+MCP bridge, skills, and configuration templates for [Geomanic](https://geomanic.com) — your GPS tracking platform.
 
-## What this repo contains
+## Repository structure
 
-- **Bridge**
-  - `bridge/geomanic-bridge.js` — Node.js bridge that forwards MCP JSON-RPC messages to the Geomanic API endpoint.
-- **Configs**
-  - Ready-to-use templates for Claude Desktop (macOS / Windows / Linux), Cursor, and generic MCP clients.
-- **Docs**
-  - Tool reference, cURL examples, troubleshooting, and config file paths by OS.
+```
+skills/
+  claude/         Claude Code skill (SKILL.md)
+  openclaw/       OpenClaw skill (SKILL.md)
+bridge/
+  geomanic-bridge.js   Node.js MCP bridge (stdin/stdout)
+  config/
+    macos.json         Claude Desktop config (macOS)
+    linux.json         Claude Desktop config (Linux)
+    windows.json       Claude Desktop config (Windows)
+    cursor/mcp.json    Cursor MCP config
+    curl/              Direct URL and cURL examples
+docs/                  Tool reference and troubleshooting
+```
 
 ## Quick start
 
 1. Generate an MCP API key on **https://geomanic.com/data** (MCP Integration tile).
-2. Copy the bridge script somewhere permanent (or clone this repo).
-3. Choose a config template, paste your key, and restart your MCP client.
+2. Choose your client below.
 
-## Config (general)
+## Claude Code (Skill)
 
-You can connect any MCP client in one of two ways:
+Copy the skill to your personal skills directory:
 
-**Direct URL** (clients that support remote MCP servers):
-- URL: `https://geomanic.com/api/v1/mcp`
-- Header: `Authorization: Bearer YOUR_MCP_KEY`
-- Template: `configs/general/direct-url.json`
+```bash
+mkdir -p ~/.claude/skills/geomanic
+cp skills/claude/SKILL.md ~/.claude/skills/geomanic/SKILL.md
+```
 
-**Local bridge** (clients that require a local command):
-- Command: `node`
-- Args: path to `bridge/geomanic-bridge.js`
-- Env: `GEOMANIC_TOKEN=YOUR_MCP_KEY`
-- Template: `configs/general/curl.txt`
+Set your API key:
 
-## Claude Desktop
+```bash
+export GEOMANIC_TOKEN=YOUR_MCP_KEY
+```
 
-Use the OS-specific templates in `configs/claude-desktop/`:
-- `macos.json`
-- `windows.json`
-- `linux.json`
+Then ask Claude: "How far did I travel today?"
 
-Update the bridge path and set `GEOMANIC_TOKEN`.
+## OpenClaw (Skill)
 
-Config file locations:
-| OS | Path |
-|----|------|
+Install from ClawHub:
+
+```
+/skills install @weltspion/geomanic
+/secrets set GEOMANIC_TOKEN YOUR_MCP_KEY
+```
+
+See `skills/openclaw/README.md` for details.
+
+## Claude Desktop (Bridge)
+
+Use the OS-specific templates in `bridge/config/`:
+
+| OS | Config path |
+|----|-------------|
 | macOS | `~/Library/Application Support/Claude/claude_desktop_config.json` |
 | Windows | `%APPDATA%\Claude\claude_desktop_config.json` |
 | Linux | `~/.config/Claude/claude_desktop_config.json` |
 
-## Cursor
+Update the bridge path and set `GEOMANIC_TOKEN`.
 
-1. Copy `configs/cursor/mcp.json` into your Cursor MCP settings.
+## Cursor (Bridge)
+
+1. Copy `bridge/config/cursor/mcp.json` into your Cursor MCP settings.
 2. Replace `<GEOMANIC_TOKEN>` with your MCP API key.
 3. Save and restart Cursor.
+
+## Direct URL (any MCP client)
+
+Clients that support remote MCP servers:
+- URL: `https://geomanic.com/api/v1/mcp`
+- Header: `Authorization: Bearer YOUR_MCP_KEY`
 
 ## Available tools
 
@@ -63,26 +85,10 @@ Config file locations:
 | `delete_waypoint` | Delete a waypoint by ID |
 | `get_waypoint` | Get a single waypoint by ID |
 | `list_waypoints` | List waypoints with time range, pagination, sorting |
-| `get_statistics` | Aggregated stats: countries, waypoints, dates, country breakdown |
-| `get_date_range` | Earliest and latest waypoint dates for the user |
+| `get_statistics` | Aggregated stats: distance, speed, altitude, country breakdown |
+| `get_date_range` | Earliest and latest waypoint dates |
 
 See `docs/functions.md` for detailed parameter documentation.
-
-## OpenClaw
-
-Install the Geomanic skill directly from ClawHub:
-
-```
-/skills install @weltspion/geomanic
-```
-
-Then set your API key:
-
-```
-/secrets set GEOMANIC_TOKEN gmnc_mcp_your_key_here
-```
-
-See `openclaw-skill/README.md` for details.
 
 ## Security notes
 

@@ -1,4 +1,18 @@
-# Config file paths by OS
+# Config and skill paths by OS
+
+## Claude Code (Skill)
+
+| OS | Skill path |
+|----|------------|
+| macOS/Linux | `~/.claude/skills/geomanic/SKILL.md` |
+
+## OpenClaw (Skill)
+
+| OS | Skill path |
+|----|------------|
+| macOS/Linux | `~/.openclaw/workspace/skills/geomanic/SKILL.md` |
+
+Or install from ClawHub: `/skills install @weltspion/geomanic`
 
 ## Claude Desktop
 

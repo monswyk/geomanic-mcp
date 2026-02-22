@@ -65,7 +65,7 @@ List waypoints with optional filters and pagination.
 
 Get aggregated statistics for a time period including country breakdown.
 
-**Required:** `from` (ISO 8601), `to` (ISO 8601)
+**Required:** `from` (ISO 8601 date or datetime), `to` (ISO 8601 date or datetime). Both date-only (`2026-02-22`) and full datetime (`2026-02-22T00:00:00Z`) are accepted.
 
 **Optional:** `suppress_flights` — Filter out likely flight data, i.e. waypoints at altitude > 2000m or with speed = 0 (default `true`)
 
@@ -73,6 +73,13 @@ Get aggregated statistics for a time period including country breakdown.
 - `waypoint_count` — Total waypoints in period
 - `active_days` — Days with at least one waypoint
 - `country_count` — Distinct countries visited
+- `total_distance_km` — Total distance in km
+- `avg_speed_kmh` — Average speed in km/h
+- `max_speed_kmh` — Max speed in km/h
+- `avg_altitude` — Average altitude in meters
+- `max_altitude` — Max altitude in meters
+- `waypoints_per_day` — Average waypoints per active day
+- `avg_km_per_day` — Average km per active day
 - `first_waypoint` — ISO timestamp of earliest waypoint
 - `last_waypoint` — ISO timestamp of latest waypoint
 - `countries` — Array of `{ country_iso, total_days, full_days, part_days }`
