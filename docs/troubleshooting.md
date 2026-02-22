@@ -1,16 +1,22 @@
 # Troubleshooting
 
-## "GEOMANIC_TOKEN environment variable is required"
-
-The bridge script requires the `GEOMANIC_TOKEN` env variable. Make sure it is set in:
-- Claude Desktop: `env` object in `claude_desktop_config.json`
-- Shell: `export GEOMANIC_TOKEN=gmnc_mcp_...` before running the bridge
-
 ## "Unauthorized — invalid or missing MCP API key"
 
 - The MCP API key is invalid or expired.
 - Generate a new key on https://geomanic.com/data (MCP Integration tile).
 - Keys start with `gmnc_mcp_`.
+
+## Claude Desktop: skill not working
+
+- Make sure you replaced `YOUR_API_KEY` in the SKILL.md with your actual key before uploading.
+- Re-upload the skill after making changes.
+- Restart Claude Desktop after adding or updating a skill.
+
+## Bridge: "GEOMANIC_TOKEN environment variable is required"
+
+The bridge script requires the `GEOMANIC_TOKEN` env variable. Make sure it is set in:
+- Cursor: `env` object in `mcp.json`
+- Shell: `export GEOMANIC_TOKEN=gmnc_mcp_...` before running the bridge
 
 ## Bridge hangs / no output
 
@@ -18,12 +24,11 @@ The bridge script requires the `GEOMANIC_TOKEN` env variable. Make sure it is se
 - Test the endpoint directly with cURL (see `docs/howto.md`).
 - Check that the URL is correct: `https://geomanic.com/api/v1/mcp`
 
-## Claude Desktop does not show Geomanic tools
+## Cursor: Geomanic tools not showing
 
-- Restart Claude Desktop after editing the config.
 - Verify the config JSON is valid (no trailing commas, correct paths).
 - Check that the bridge path in `args` is absolute and correct for your OS.
-- On macOS, expand `~` to your full home path if needed.
+- Restart Cursor after editing the config.
 
 ## "Parse error" response
 
