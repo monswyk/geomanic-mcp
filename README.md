@@ -1,6 +1,14 @@
-# geomanic-mcp
+<p align="center">
+  <a href="https://geomanic.com">
+    <img src="https://geomanic.com/favicon.svg" alt="Geomanic" width="80" />
+  </a>
+</p>
 
-MCP bridge, skills, and configuration templates for [Geomanic](https://geomanic.com) — your GPS tracking platform.
+<h1 align="center">geomanic-mcp</h1>
+
+<p align="center">
+  MCP bridge, skills, and configuration templates for <a href="https://geomanic.com">Geomanic</a> — your GPS tracking platform.
+</p>
 
 ## Repository structure
 
