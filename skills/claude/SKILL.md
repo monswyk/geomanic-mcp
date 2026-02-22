@@ -9,7 +9,7 @@ Query and manage GPS travel data from [Geomanic](https://geomanic.com), a privac
 
 ## Authentication
 
-The API key is in the environment variable `GEOMANIC_TOKEN`. Include it as a Bearer token in every request.
+Before uploading this file, replace `YOUR_API_KEY` in the examples below with your actual API key from [geomanic.com/data](https://geomanic.com/data). Include it as a Bearer token in every request.
 
 ## API
 
@@ -18,7 +18,7 @@ Send JSON-RPC POST requests to `https://geomanic.com/api/v1/mcp`. The response d
 ```bash
 curl -s -X POST https://geomanic.com/api/v1/mcp \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $GEOMANIC_TOKEN" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
   -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"TOOL_NAME","arguments":{...}}}'
 ```
 
@@ -33,7 +33,7 @@ Required: `from`, `to` (ISO 8601 date or datetime). Optional: `suppress_flights`
 ```bash
 curl -s -X POST https://geomanic.com/api/v1/mcp \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $GEOMANIC_TOKEN" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
   -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_statistics","arguments":{"from":"2026-02-22","to":"2026-02-22"}}}'
 ```
 
@@ -44,7 +44,7 @@ Earliest and latest waypoint dates. No parameters.
 ```bash
 curl -s -X POST https://geomanic.com/api/v1/mcp \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $GEOMANIC_TOKEN" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
   -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_date_range","arguments":{}}}'
 ```
 
@@ -55,7 +55,7 @@ List waypoints with optional filters. Optional: `from`, `to` (ISO 8601), `limit`
 ```bash
 curl -s -X POST https://geomanic.com/api/v1/mcp \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $GEOMANIC_TOKEN" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
   -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"list_waypoints","arguments":{"from":"2026-02-22","to":"2026-02-22","limit":10}}}'
 ```
 

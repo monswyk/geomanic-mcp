@@ -14,7 +14,7 @@
 
 ```
 skills/
-  claude/         Claude Code skill (SKILL.md)
+  claude/         Claude Desktop skill (SKILL.md)
   openclaw/       OpenClaw skill (SKILL.md)
 bridge/
   geomanic-bridge.js   Node.js MCP bridge (stdin/stdout)
@@ -32,23 +32,6 @@ docs/                  Tool reference and troubleshooting
 1. Generate an MCP API key on **https://geomanic.com/data** (MCP Integration tile).
 2. Choose your client below.
 
-## Claude Code (Skill)
-
-Copy the skill to your personal skills directory:
-
-```bash
-mkdir -p ~/.claude/skills/geomanic
-cp skills/claude/SKILL.md ~/.claude/skills/geomanic/SKILL.md
-```
-
-Set your API key:
-
-```bash
-export GEOMANIC_TOKEN=YOUR_MCP_KEY
-```
-
-Then ask Claude: "How far did I travel today?"
-
 ## OpenClaw (Skill)
 
 Install from ClawHub:
@@ -60,17 +43,13 @@ Install from ClawHub:
 
 See `skills/openclaw/README.md` for details.
 
-## Claude Desktop (Bridge)
+## Claude Desktop (Skill)
 
-Use the OS-specific templates in `bridge/config/`:
+1. Download this repository (Code → Download ZIP) and extract it.
+2. Open `skills/claude/SKILL.md` in a text editor and replace every `YOUR_API_KEY` with your actual API key.
+3. In Claude Desktop: **Settings → Skills → Add → Upload Skill** and select the edited `SKILL.md`.
 
-| OS | Config path |
-|----|-------------|
-| macOS | `~/Library/Application Support/Claude/claude_desktop_config.json` |
-| Windows | `%APPDATA%\Claude\claude_desktop_config.json` |
-| Linux | `~/.config/Claude/claude_desktop_config.json` |
-
-Update the bridge path and set `GEOMANIC_TOKEN`.
+Alternatively, download a ready-to-use SKILL.md with your key already included from [geomanic.com/data](https://geomanic.com/data).
 
 ## Cursor (Bridge)
 
